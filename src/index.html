@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div id="navbar"></div>
+    <div id="hero"></div>
+    <div id="about"></div>
+    <div id="skills"></div>
+    <div id="projects"></div>
+    <div id="contact"></div>
+    <div id="footer"></div>
+    <script>
+// ฟังก์ชนสั ํ
+าหรับโหลด component
+        async function loadComponent(url, targetId) {
+            try {
+                const response = await fetch(url);
+                const html = await response.text();
+                document.getElementById(targetId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading ${url}:`, error);
+            }
+        }
+        // โหลดทุก components
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('/components/navbar/index.html', 'navbar');
+            loadComponent('/components/hero/index.html', 'hero');
+            loadComponent('/components/about/index.html', 'about');
+            loadComponent('/components/skills/index.html', 'skills');
+            loadComponent('/components/projects/index.html', 'projects');
+            loadComponent('/components/contact/index.html', 'contact');
+            loadComponent('/components/footer/index.html', 'footer');
+        });
+    </script>
+</body>
+
+</html>
