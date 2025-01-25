@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/main.js"></script>
+    <base href="/src/" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Components -->
+    <div id="navbar"></div>
+    <div id="contact"></div>
+    <div id="footer"></div>
+
+    <!-- Script to Load Components -->
+    <script>
+      /**
+       * Function to dynamically load components
+       * @param {string} url - Path to the component file
+       * @param {string} targetId - ID of the div to inject the component into
+       */
+      async function loadComponent(url, targetId) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const html = await response.text();
+          document.getElementById(targetId).innerHTML = html;
+        } catch (error) {
+          console.error(`Error loading ${url}:`, error);
+        }
+      }
+
+      // Load components after DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        loadComponent("./components/navbar/index.html", "navbar");
+        loadComponent("./components/contact/index.html", "contact");
+        loadComponent("./components/footer/index.html", "footer");
+      });
+    </script>
+  </body>
+</html>
