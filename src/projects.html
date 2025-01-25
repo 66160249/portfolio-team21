@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/main.js"></script>
+    <base href="/src/" />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Components -->
+    <div id="navbar"></div>
+    <div id="projects"></div>
+    <div id="footer"></div>
+
+    <!-- Script to Load Components -->
+    <script>
+      // Load components dynamically
+      async function loadComponent(url, targetId) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const html = await response.text();
+          document.getElementById(targetId).innerHTML = html;
+        } catch (error) {
+          console.error(`Error loading ${url}:`, error);
+        }
+      }
+
+      // Dynamically load components after DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        loadComponent("./components/navbar/index.html", "navbar");
+        loadComponent("./components/projects/index.html", "projects");
+        loadComponent("./components/footer/index.html", "footer");
+      });
+    </script>
+  </body>
+</html>
