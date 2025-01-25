@@ -1,5 +1,5 @@
 # portfolio-team21
-Member
+- Member
 - Develop#1 : นายธนภัทร สุรางครัตน์
 - Develop#2 : นายปิติพงษ์ เนินริมหนอง
 - Develop#3 : นายพลวัฒน์ ปรุงปัญญา
