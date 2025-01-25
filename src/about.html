@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+  <body class="bg-gray-100">
+    <!-- Components -->
+    <div id="navbar"></div>
+    <div id="about"></div>
+    <div id="footer"></div>
+
+    <!-- Script to Load Components -->
+    <script>
+      /**
+       * Function to load external components into specified div elements
+       * @param {string} url - Path to the external component HTML file
+       * @param {string} targetId - The ID of the div element to load content into
+       */
+      async function loadComponent(url, targetId) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const html = await response.text();
+          document.getElementById(targetId).innerHTML = html;
+        } catch (error) {
+          console.error(`Error loading component from ${url}:`, error);
+        }
+      }
+
+      // Dynamically load components after DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        const components = [
+          { url: "./components/navbar/index.html", target: "navbar" },
+          { url: "./components/about/index.html", target: "about" },
+          { url: "./components/footer/index.html", target: "footer" },
+        ];
+
+        components.forEach(({ url, target }) => loadComponent(url, target));
+      });
+    </script>
+  </body>
+</html>
